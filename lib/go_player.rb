@@ -11,9 +11,10 @@ module GoPlayer
 
   class Game
     def initialize
-      voters = []
-      @nominator = MoveNominator.new
       @recorder = BoardRecorder.new
+      open_space_voter = OpenSpaceVoter.new(@recorder)
+      voters = [open_space_voter]
+      @nominator = MoveNominator.new
       @election = Election.new voters
     end
 
