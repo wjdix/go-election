@@ -2,6 +2,25 @@ require 'rubygems'
 require 'bundler/setup'
 require 'celluloid'
 
-require 'java'
-require 'vendor/kgsGtp.jar'
 
+module GoPlayer
+  require_relative './go_player/board_recorder'
+  require_relative './go_player/election'
+  require_relative './go_player/move_nominator'
+  require_relative './go_player/votes'
+
+  class Game
+    def initialize
+      voters = []
+      @nominator = MoveNominator.new
+      @recorder = BoardRecorder.new
+      @election = Election.new voters
+    end
+
+    def receive_move move
+      @recorder.async.record move
+      candidates = @nominator.candidates 5
+      @election.elect candidates
+    end
+  end
+end
