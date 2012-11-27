@@ -10,7 +10,8 @@ module GoPlayer
   require_relative './go_player/votes'
 
   class Game
-    def initialize
+    def initialize(color)
+      @color = color
       @recorder = BoardRecorder.new
       open_space_voter = OpenSpaceVoter.new(@recorder)
       voters = [open_space_voter]

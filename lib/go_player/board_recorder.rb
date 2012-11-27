@@ -6,8 +6,8 @@ module GoPlayer
       @moves = moves
     end
 
-    def played? move
-      @moves.include? move
+    def played? position
+      @moves.map(&:position).include? position
     end
 
     def record move
