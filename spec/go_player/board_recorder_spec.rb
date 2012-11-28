@@ -22,4 +22,12 @@ describe GoPlayer::BoardRecorder do
       subject.played?(position).should be_true
     end
   end
+
+  describe "#color_at" do
+    it "queries moves for color at position" do
+      move = GoPlayer::Move.new(GoPlayer::Colors::White, position)
+      subject.record move
+      subject.color_at(position).should == GoPlayer::Colors::White
+    end
+  end
 end
