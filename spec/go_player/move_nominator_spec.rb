@@ -4,7 +4,7 @@ require_relative '../../lib/go_player/move_nominator'
 describe GoPlayer::MoveNominator do
   describe "#generate" do
     it "generates a valid move" do
-      subject.generate.should be_a_valid_move
+      subject.generate.should be_valid
     end
   end
 
@@ -13,7 +13,7 @@ describe GoPlayer::MoveNominator do
       candidates = subject.candidates(4)
       candidates.length.should == 4
       candidates.each do |candidate|
-        candidate.should be_a_valid_move
+        candidate.should be_valid
       end
     end
   end

@@ -1,12 +1,14 @@
 require 'celluloid'
+require_relative './position'
+
 module GoPlayer
   class MoveNominator
     include Celluloid
     LETTERS = ('A'..'Z').to_a - ['I']
     def generate
-      number = 1 + rand(19)
-      letter = LETTERS[rand(19)]
-      "#{letter}#{number}"
+      row = 1 + rand(19)
+      column = GoPlayer::Position::COLUMNS[rand(19)]
+      GoPlayer::Position.new(row, column)
     end
 
     def candidates n

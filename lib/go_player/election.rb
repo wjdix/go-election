@@ -12,18 +12,18 @@ module GoPlayer
       results = {}
       candidates.map do |candidate|
         ElectionResult.new(candidate).collect_votes(voters)
-      end.reject(&:vetoed?).sort_by(&:yay_votes).reverse.first.move
+      end.reject(&:vetoed?).sort_by(&:yay_votes).reverse.first.position
     end
 
     class ElectionResult
-      attr_reader :move
-      def initialize(move)
-        @move = move
+      attr_reader :position
+      def initialize(position)
+        @position = position
         @votes = []
       end
 
       def collect_votes(voters)
-        voters.each {|voter| record_vote(voter.vote(@move))}
+        voters.each {|voter| record_vote(voter.vote(@position))}
         self
       end
 
