@@ -5,6 +5,19 @@ require_relative '../../lib/go_player/move'
 require_relative '../../lib/go_player/board_recorder'
 
 describe GoPlayer::LifeVoter do
+  describe "#vote" do
+    it "vetoes if move will not live" do
+      moves = [
+        GoPlayer::Move.new(GoPlayer::Colors::Black, GoPlayer::Position.new(15, 'C')),
+        GoPlayer::Move.new(GoPlayer::Colors::Black, GoPlayer::Position.new(17, 'C')),
+        GoPlayer::Move.new(GoPlayer::Colors::Black, GoPlayer::Position.new(16, 'B')),
+        GoPlayer::Move.new(GoPlayer::Colors::Black, GoPlayer::Position.new(16, 'D'))
+      ]
+      recorder = GoPlayer::BoardRecorder.new(moves)
+      voter = GoPlayer::LifeVoter.new(recorder, GoPlayer::Colors::White)
+      voter.vote(GoPlayer::Position.new(16, 'C')).should be_veto
+    end
+  end
   describe "#will_live?" do
     it "is false if all surrounding stones are different color" do
       moves = [

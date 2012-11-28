@@ -10,6 +10,10 @@ module GoPlayer
       @recorder = recorder
     end
 
+    def vote(position)
+      GoPlayer::Votes::VETO unless will_live? position
+    end
+
     def will_live?(position)
       allies = position.neighbors.select{|neighbor| @recorder.color_at(neighbor) == @color}
       position.neighbors.any?{|neighbor| !@recorder.played?(neighbor) } ||
