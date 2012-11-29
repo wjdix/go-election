@@ -32,7 +32,6 @@ module GoPlayer
     end
 
     def receive_command(command)
-      $stderr.puts command.inspect
       if command.body == "list_commands"
         @out_pipe.puts("=#{command.number} #{valid_commands.join("\n")}\n\n")
       elsif command.body =~ /\Agenmove/
@@ -43,7 +42,6 @@ module GoPlayer
       else
         @out_pipe.puts("=#{command.number}\n\n")
       end
-      $stderr.puts @recorder.moves.inspect
       @out_pipe.flush
     end
 
