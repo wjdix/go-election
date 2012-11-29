@@ -1,6 +1,6 @@
 module GoPlayer
   module Votes
     VETO = "VETO"
-    YAY = "YAY"
+    YEA = "YEA"
   end
 end

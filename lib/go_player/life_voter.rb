@@ -11,7 +11,7 @@ module GoPlayer
     end
 
     def vote(position)
-      GoPlayer::Votes::VETO unless will_live? position
+      will_live?(position) ? GoPlayer::Votes::YEA : GoPlayer::Votes::VETO
     end
 
     def will_live?(position)
@@ -23,6 +23,8 @@ module GoPlayer
         end
       end
     end
+
+    private
 
     def cloned_after_move(position)
       move = Move.new(@color, position)

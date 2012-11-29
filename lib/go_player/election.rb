@@ -12,7 +12,7 @@ module GoPlayer
       results = {}
       candidates.map do |candidate|
         ElectionResult.new(candidate).collect_votes(voters)
-      end.reject(&:vetoed?).sort_by(&:yay_votes).reverse.first.position
+      end.reject(&:vetoed?).sort_by(&:yea_votes).reverse.first.position
     end
 
     class ElectionResult
@@ -35,8 +35,8 @@ module GoPlayer
         @votes.any?{|vote| vote == GoPlayer::Votes::VETO}
       end
 
-      def yay_votes
-        @votes.select{|vote| vote == GoPlayer::Votes::YAY}.count
+      def yea_votes
+        @votes.select{|vote| vote == GoPlayer::Votes::YEA}.count
       end
     end
   end

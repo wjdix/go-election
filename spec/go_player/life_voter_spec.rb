@@ -5,7 +5,14 @@ require_relative '../../lib/go_player/move'
 require_relative '../../lib/go_player/board_recorder'
 
 describe GoPlayer::LifeVoter do
+
   describe "#vote" do
+    it "votes yay if move will live" do
+      recorder = GoPlayer::BoardRecorder.new([])
+      voter = GoPlayer::LifeVoter.new(recorder, GoPlayer::Colors::White)
+      voter.vote(GoPlayer::Position.new(16, 'C')).should be_yea
+    end
+
     it "vetoes if move will not live" do
       moves = [
         GoPlayer::Move.new(GoPlayer::Colors::Black, GoPlayer::Position.new(15, 'C')),
@@ -17,8 +24,16 @@ describe GoPlayer::LifeVoter do
       voter = GoPlayer::LifeVoter.new(recorder, GoPlayer::Colors::White)
       voter.vote(GoPlayer::Position.new(16, 'C')).should be_veto
     end
+
   end
+
   describe "#will_live?" do
+    it "doesnt blow up on edge" do
+      recorder = GoPlayer::BoardRecorder.new([])
+      voter = GoPlayer::LifeVoter.new(recorder, GoPlayer::Colors::White)
+      voter.will_live?(GoPlayer::Position.new(19, 't')).should be_true
+    end
+
     it "is false if all surrounding stones are different color" do
       moves = [
         GoPlayer::Move.new(GoPlayer::Colors::Black, GoPlayer::Position.new(15, 'C')),
@@ -30,6 +45,7 @@ describe GoPlayer::LifeVoter do
       voter = GoPlayer::LifeVoter.new(recorder, GoPlayer::Colors::White)
       voter.will_live?(GoPlayer::Position.new(16, 'C')).should be_false
     end
+
     it "is false if will fill in last liberty" do
       moves = [
         GoPlayer::Move.new(GoPlayer::Colors::Black, GoPlayer::Position.new(15, 'C')),

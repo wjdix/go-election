@@ -1,8 +1,8 @@
 require 'celluloid'
 module GoPlayer
   class BoardRecorder
-    attr_reader :moves
     include Celluloid
+    attr_reader :moves
     def initialize(moves=[])
       @moves = moves
     end

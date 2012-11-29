@@ -19,7 +19,7 @@ class YayVoter
 
   def vote move
     if move == @to_support
-      GoPlayer::Votes::YAY
+      GoPlayer::Votes::YEA
     end
   end
 end

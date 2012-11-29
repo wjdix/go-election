@@ -1,10 +1,14 @@
 module GoPlayer
   class Position
-    attr_reader :row, :column
-    COLUMNS = ('A'..'Z').to_a - ['I']
+    attr_reader :row
+    COLUMNS = ('a'..'t').to_a - ['i']
     def initialize(row, column)
       @row = row
       @column = column
+    end
+
+    def column
+      @column && @column.downcase
     end
 
     def neighbors
@@ -15,7 +19,7 @@ module GoPlayer
 
     def valid?
       1.upto(19).to_a.include?(@row) &&
-        COLUMNS.include?(@column)
+        COLUMNS.include?(column)
     end
 
     def ==(other)
@@ -24,6 +28,10 @@ module GoPlayer
 
     def eql?(other)
       self == other
+    end
+
+    def to_s
+      "#{@column}#{@row}"
     end
 
     private

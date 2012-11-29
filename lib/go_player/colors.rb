@@ -1,5 +1,14 @@
 module GoPlayer
   module Colors
+    class << self
+      def parse(color)
+        if color.downcase == "black" || color.downcase == "b"
+          Black
+        else
+          White
+        end
+      end
+    end
     class Black
       class << self
         def opposite

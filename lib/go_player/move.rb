@@ -5,5 +5,10 @@ module GoPlayer
       @color = color
       @position = position
     end
+
+    def ==(other)
+      other.position == self.position &&
+        other.color == self.color
+    end
   end
 end
