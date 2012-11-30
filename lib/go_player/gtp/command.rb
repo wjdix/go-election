@@ -5,6 +5,10 @@ module GoPlayer
         @line = line
       end
 
+      def color
+        @color ||= @line =~ /\sb\s/ ? GoPlayer::Colors::Black : GoPlayer::Colors::White
+      end
+
       def number
         @number ||= @line[/\A\d+/]
       end

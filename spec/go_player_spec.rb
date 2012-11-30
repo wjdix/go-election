@@ -19,6 +19,13 @@ play
       EOS
     end
 
+    it "sets color on first genmove" do
+      in_pipe = StringIO.new("9 genmove w\n")
+      out_pipe = StringIO.new
+      game = GoPlayer.start(in_pipe, out_pipe)
+      game.color.should == GoPlayer::Colors::White
+    end
+
     it "generates a move" do
       in_pipe = StringIO.new("9 genmove black\n")
       out_pipe = StringIO.new

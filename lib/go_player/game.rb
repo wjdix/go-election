@@ -1,11 +1,10 @@
 module GoPlayer
   class Game
     include Celluloid
-    attr_reader :recorder
+    attr_reader :recorder, :color
 
-    def initialize(out_pipe, color)
+    def initialize(out_pipe)
       @out_pipe = out_pipe
-      @color = color
       @recorder = BoardRecorder.new
       open_space_voter = OpenSpaceVoter.new(@recorder)
       life_voter = LifeVoter.new(@recorder, @color)
@@ -19,6 +18,7 @@ module GoPlayer
       if command.body == "list_commands"
         @out_pipe.puts("=#{command.number} #{valid_commands.join("\n")}\n\n")
       elsif command.body =~ /\Agenmove/
+        set_color(command)
         @out_pipe.puts("=#{command.number} #{gen_move}\n\n")
       elsif command.body =~ /\Aplay/
         receive_move command.move
@@ -31,6 +31,10 @@ module GoPlayer
 
     def receive_move move
       @recorder.record move
+    end
+
+    def set_color command
+      @color ||= command.color
     end
 
     def gen_move

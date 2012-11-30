@@ -19,7 +19,7 @@ require 'go_player/game'
 
 module GoPlayer
   def self.start(in_pipe=$stdin, out_pipe=$stdout)
-    game = Game.new(out_pipe, GoPlayer::Colors::Black)
+    game = Game.new(out_pipe)
     input_listener = InputListener.new(in_pipe, game)
     input_listener.start
     game
