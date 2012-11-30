@@ -17,6 +17,7 @@ require 'go_player/open_space_voter'
 require 'go_player/position'
 require 'go_player/votes'
 require 'go_player/game'
+require 'hacks/enumerable'
 
 module GoPlayer
   def self.start(in_pipe=$stdin, out_pipe=$stdout)

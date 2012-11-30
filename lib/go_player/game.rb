@@ -1,6 +1,5 @@
 module GoPlayer
   class Game
-    include Celluloid
     attr_reader :color
     VOTERS = [OpenSpaceVoter, LifeVoter, AttachmentVoter, EdgeVoter]
 
@@ -33,7 +32,7 @@ module GoPlayer
     end
 
     def gen_move
-      candidates = nominator.candidates 5
+      candidates = GoPlayer::Position.all
       election.elect(candidates).tap do |selected|
         recorder.record GoPlayer::Move.new(@color, selected)
       end
@@ -54,7 +53,7 @@ module GoPlayer
 
 
     def voters
-      @voters ||= VOTERS.map {|voter| voter.new(recorder, @color) }
+      @voters ||= VOTERS.map {|voter| voter.pool(size: 36, args:[recorder, @color]) }
     end
 
     def valid_commands

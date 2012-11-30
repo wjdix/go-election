@@ -1,5 +1,6 @@
 module GoPlayer
   class AttachmentVoter
+    include Celluloid
     def initialize(recorder, color)
       @color = color
       @recorder = recorder

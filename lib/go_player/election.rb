@@ -9,7 +9,7 @@ module GoPlayer
 
     def elect(candidates)
       results = {}
-      candidates.map do |candidate|
+      candidates.pmap do |candidate|
         ElectionResult.new(candidate).collect_votes(voters)
       end.reject(&:vetoed?).sort_by(&:yea_votes).reverse.first.position
     end
@@ -22,12 +22,8 @@ module GoPlayer
       end
 
       def collect_votes(voters)
-        voters.each {|voter| record_vote(voter.vote(@position))}
+        @votes = voters.pmap {|voter| voter.vote(@position)}
         self
-      end
-
-      def record_vote(vote)
-        @votes << vote
       end
 
       def vetoed?

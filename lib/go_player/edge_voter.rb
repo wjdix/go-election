@@ -1,5 +1,6 @@
 module GoPlayer
   class EdgeVoter
+    include Celluloid
     OPENING_LENGTH = 16
     def initialize(recorder, color)
       @recorder = recorder
