@@ -2,6 +2,11 @@ module GoPlayer
   class Position
     attr_reader :row
     COLUMNS = ('a'..'t').to_a - ['i']
+
+    def self.all
+      1.upto(19).to_a.product(COLUMNS).map {|row, col| new(row, col) }
+    end
+
     def initialize(row, column)
       @row = row
       @column = column
@@ -31,10 +36,9 @@ module GoPlayer
     end
 
     def to_s
-      "#{@column}#{@row}"
+      "#{column}#{@row}"
     end
 
-    private
     def column_index
       COLUMNS.index(column)
     end

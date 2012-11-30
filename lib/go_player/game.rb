@@ -2,7 +2,7 @@ module GoPlayer
   class Game
     include Celluloid
     attr_reader :color
-    VOTERS = [OpenSpaceVoter, LifeVoter, AttachmentVoter]
+    VOTERS = [OpenSpaceVoter, LifeVoter, AttachmentVoter, EdgeVoter]
 
     def initialize(out_pipe)
       @out_pipe = out_pipe
@@ -39,6 +39,10 @@ module GoPlayer
       end
     end
 
+    def recorder
+      @recorder ||= BoardRecorder.new([])
+    end
+
     private
     def election
       @election ||= Election.new voters
@@ -48,9 +52,6 @@ module GoPlayer
       @nominator ||= MoveNominator.new
     end
 
-    def recorder
-      @recorder ||= BoardRecorder.new([])
-    end
 
     def voters
       @voters ||= VOTERS.map {|voter| voter.new(recorder, @color) }
