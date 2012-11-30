@@ -16,7 +16,7 @@ module GoPlayer
     end
 
     def color_at position
-      move = @moves.first{|move| move.position == position}
+      move = @moves.find{|move| move.position == position}
       move ? move.color : nil
     end
   end

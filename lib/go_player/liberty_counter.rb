@@ -15,8 +15,7 @@ module GoPlayer
       color = @recorder.color_at(position)
       free_spaces = position.neighbors.select{ |neighbor| !@recorder.played?(neighbor) }
       to_count = position.neighbors.
-        select{ |neighbor| @recorder.played?(neighbor) }.
-        select{ |neighbor| @recorder.color_at(neighbor) == color }
+        select{ |neighbor| @recorder.played?(neighbor) && @recorder.color_at(neighbor) == color }
       to_count -= counted
       counted << position
       to_count.inject(free_spaces){|accum, neighbor|

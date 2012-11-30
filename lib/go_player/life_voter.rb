@@ -1,6 +1,7 @@
 require_relative './move'
 require_relative './board_recorder'
 require_relative './position'
+require_relative './liberty_counter'
 
 module GoPlayer
   class LifeVoter
@@ -15,24 +16,18 @@ module GoPlayer
     end
 
     def will_live?(position)
-      allies = position.neighbors.select{|neighbor| @recorder.color_at(neighbor) == @color}
-      position.neighbors.any?{|neighbor| !@recorder.played?(neighbor) } ||
-      allies.any? do |neighbor|
-        cloned_after_move(position) do |cloned|
-          cloned.will_live?(neighbor)
-        end
+      cloned_recorder_after_move(position) do |cloned|
+        GoPlayer::LibertyCounter.new(cloned).count_liberties(position) != 0
       end
     end
 
     private
 
-    def cloned_after_move(position)
+    def cloned_recorder_after_move(position)
       move = Move.new(@color, position)
-      recorder = BoardRecorder.new(@recorder.moves << move)
-      cloned = self.class.new(recorder, @color)
-      result = yield cloned
+      recorder = BoardRecorder.new(@recorder.moves.clone << move)
+      result = yield recorder
       recorder.terminate
-      cloned.terminate
       result
     end
   end

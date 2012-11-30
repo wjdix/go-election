@@ -30,5 +30,17 @@ describe GoPlayer::LibertyCounter do
       counter = GoPlayer::LibertyCounter.new(recorder)
       counter.count_liberties(GoPlayer::Position.new(16, 'j')).should == 6
     end
+
+    it "is 0 for a surrounded stone" do
+      move1 = GoPlayer::Move.new(GoPlayer::Colors::Black, GoPlayer::Position.new(16, 'j'))
+      move2 = GoPlayer::Move.new(GoPlayer::Colors::Black, GoPlayer::Position.new(18, 'j'))
+      move3 = GoPlayer::Move.new(GoPlayer::Colors::Black, GoPlayer::Position.new(17, 'h'))
+      move4 = GoPlayer::Move.new(GoPlayer::Colors::Black, GoPlayer::Position.new(17, 'k'))
+      surrounded = GoPlayer::Move.new(GoPlayer::Colors::White, GoPlayer::Position.new(17, 'j'))
+      recorder = GoPlayer::BoardRecorder.new([move1, move2, move3, move4, surrounded])
+      counter = GoPlayer::LibertyCounter.new(recorder)
+
+      counter.count_liberties(surrounded.position).should == 0
+    end
   end
 end
