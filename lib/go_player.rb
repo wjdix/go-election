@@ -25,8 +25,9 @@ module GoPlayer
       @recorder = BoardRecorder.new
       open_space_voter = OpenSpaceVoter.new(@recorder)
       life_voter = LifeVoter.new(@recorder, @color)
+      capture_voter = CaptureVoter.new(@recorder, @color)
       attachment_voter = AttachmentVoter.new(@recorder, @color)
-      voters = [open_space_voter, life_voter, attachment_voter]
+      voters = [open_space_voter, life_voter, attachment_voter, capture_voter]
       @nominator = MoveNominator.new
       @election = Election.new voters
     end

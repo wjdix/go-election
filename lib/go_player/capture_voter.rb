@@ -1,7 +1,7 @@
 module GoPlayer
   class CaptureVoter
     include Celluloid
-    def initialize(color, recorder)
+    def initialize(recorder, color)
       @recorder = recorder
       @color = color
     end
