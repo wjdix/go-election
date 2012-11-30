@@ -1,7 +1,7 @@
 module GoPlayer
   class OpenSpaceVoter
     include Celluloid
-    def initialize(recorder)
+    def initialize(recorder, color)
       @recorder = recorder
     end
 
