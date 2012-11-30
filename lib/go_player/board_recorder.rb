@@ -1,4 +1,3 @@
-require 'celluloid'
 module GoPlayer
   class BoardRecorder
     include Celluloid

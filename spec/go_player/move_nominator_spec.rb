@@ -1,5 +1,4 @@
-require_relative '../spec_helper'
-require_relative '../../lib/go_player/move_nominator'
+require 'spec_helper'
 
 describe GoPlayer::MoveNominator do
   describe "#generate" do

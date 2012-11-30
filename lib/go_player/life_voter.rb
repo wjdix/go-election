@@ -1,8 +1,3 @@
-require_relative './move'
-require_relative './board_recorder'
-require_relative './position'
-require_relative './liberty_counter'
-
 module GoPlayer
   class LifeVoter
     include Celluloid

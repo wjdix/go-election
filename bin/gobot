@@ -1,5 +1,9 @@
 #!/usr/bin/env ruby
+$: << File.join(File.dirname(__FILE__), "..", "lib")
+
+require 'rubygems'
 require 'bundler/setup'
-require File.join(File.dirname(__FILE__), '../lib/go_player')
+
+require "go_player"
 
 GoPlayer.start

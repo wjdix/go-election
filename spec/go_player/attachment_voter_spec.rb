@@ -1,9 +1,4 @@
 require 'spec_helper'
-require_relative '../../lib/go_player/move'
-require_relative '../../lib/go_player/position'
-require_relative '../../lib/go_player/colors'
-require_relative '../../lib/go_player/attachment_voter'
-require_relative '../../lib/go_player/board_recorder'
 
 describe GoPlayer::AttachmentVoter do
   describe "#vote" do

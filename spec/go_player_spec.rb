@@ -1,7 +1,4 @@
 require 'spec_helper'
-require_relative '../lib/go_player'
-require_relative '../lib/go_player/colors'
-require_relative '../lib/go_player/gtp/command'
 
 describe GoPlayer do
   describe "integration" do

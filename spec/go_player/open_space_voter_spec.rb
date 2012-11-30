@@ -1,9 +1,4 @@
-require_relative '../spec_helper'
-require_relative '../../lib/go_player/open_space_voter'
-require_relative '../../lib/go_player/board_recorder'
-require_relative '../../lib/go_player/position'
-require_relative '../../lib/go_player/move'
-require_relative '../../lib/go_player/colors'
+require 'spec_helper'
 
 describe GoPlayer::OpenSpaceVoter do
   let(:played){

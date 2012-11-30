@@ -1,3 +1,4 @@
-require 'celluloid'
-require_relative './support/matchers.rb'
-require_relative './support/voters.rb'
+require 'go_player'
+
+require 'support/matchers.rb'
+require 'support/voters.rb'

@@ -6,7 +6,6 @@ GEM
       timers (>= 1.0.0)
     diff-lcs (1.1.3)
     facter (1.6.14)
-    rake (10.0.2)
     rspec (2.12.0)
       rspec-core (~> 2.12.0)
       rspec-expectations (~> 2.12.0)
@@ -23,5 +22,4 @@ PLATFORMS
 
 DEPENDENCIES
   celluloid
-  rake
   rspec

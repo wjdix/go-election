@@ -1,9 +1,4 @@
 require 'spec_helper'
-require_relative '../../../lib/go_player/gtp/command'
-require_relative '../../../lib/go_player/colors'
-require_relative '../../../lib/go_player/move'
-require_relative '../../../lib/go_player/position'
-
 
 describe GoPlayer::GTP::Command do
   subject{ GoPlayer::GTP::Command.new("1 drew stinks") }

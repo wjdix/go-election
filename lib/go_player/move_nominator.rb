@@ -1,6 +1,3 @@
-require 'celluloid'
-require_relative './position'
-
 module GoPlayer
   class MoveNominator
     include Celluloid

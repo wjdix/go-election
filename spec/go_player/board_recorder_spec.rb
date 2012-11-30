@@ -1,9 +1,4 @@
-require_relative '../spec_helper'
-require_relative '../../lib/go_player/board_recorder'
-require_relative '../../lib/go_player/move'
-require_relative '../../lib/go_player/colors'
-require_relative '../../lib/go_player/position'
-
+require 'spec_helper'
 
 describe GoPlayer::BoardRecorder do
   let(:position){ GoPlayer::Position.new(19, 'A') }
