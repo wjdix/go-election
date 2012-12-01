@@ -53,7 +53,7 @@ module GoPlayer
 
 
     def voters
-      @voters ||= VOTERS.map {|voter| voter.pool(size: 30, args:[recorder, @color]) }
+      @voters ||= VOTERS.map {|voter| voter.pool(size: 20, args:[recorder, @color]) }
     end
 
     def valid_commands
