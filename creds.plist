@@ -1,7 +1,0 @@
-name=williamdix
-password=yro3pp
-room=williamdix test
-mode=wait
-opponent=bitsnbytes
-engine=./bin/gobot
-automatch.rank=30k
